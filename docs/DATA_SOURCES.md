@@ -116,7 +116,7 @@ Source: [edp.ebay.com/join/api-license-agreement](https://www.edp.ebay.com/join/
 
 **What this means for the tracker (my reading, not legal advice):**
 1. A long-lived historical database of eBay listing prices used to compute "market price" for items on eBay sits close to §9.5 ("model prices") and §8.1(d) (average prices). The safest pattern is **live lookup**: query Browse when Saafir checks a SKU, show the current lowest and median ask with links, and keep cached eBay results for no more than 6 hours (24 hours at most). Delete listings that have ended. Don't build a permanent eBay price history.
-2. Saafir's own records are not eBay Content. That includes what he paid, what he sold for, and notes he types in after a manual Product Research lookup. §1 excludes info "you lawfully obtain independent of eBay." Whether manual notes taken from Terapeak count as "independent" is a gray area and **unverified**. Storing a single "Terapeak median I observed on date X" figure that he typed in himself is low risk, but it is not explicitly blessed.
+2. Saafir's own records are not eBay Content. That includes what they paid, what they sold for, and notes they type in after a manual Product Research lookup. §1 excludes info "you lawfully obtain independent of eBay." Whether manual notes taken from Terapeak count as "independent" is a gray area and **unverified**. Storing a single "Terapeak median I observed on date X" figure that they typed in themself is low risk, but it is not explicitly blessed.
 3. Keep it **private and internal**. Don't resell, publish or share the eBay-derived data.
 4. If the tool grows beyond personal use, ask eBay Developer Support (or a lawyer) whether internal restock pricing is acceptable under §9.5.
 
@@ -171,18 +171,18 @@ These are leads only. Wholesale price lists are behind dealer accounts, and **no
 - **M & J Toys Inc.** ([mjtoysinc.com](https://www.mjtoysinc.com/brand/mini-gt/)): "Die-Cast Distribution", "Since 1987". Lists Mini GT (and per search, Tarmac Works). Likely a US wholesaler; ask about a dealer account.
 - **Hanz Driven** (Canada): search results show an "Inno64 Distribution" page with a call for shops to carry Inno64, plus "Pop Race & Inno64 Wholesale". The page returned 404 when fetched.
 - **Five Diecast** ([fivediecast.com](https://fivediecast.com/manufacturer/mini-gt/)) claims to be an authorized US Mini GT dealer. It is a retailer, not confirmed as a distributor.
-- Contact Mini GT/TSM (Distributions section), Tarmac Works ("Where to buy"), Inno Models, Minichamps and Spark directly to ask who their North American importer is. Dealer price lists typically require a resale certificate and business details. Saafir must do this himself.
+- Contact Mini GT/TSM (Distributions section), Tarmac Works ("Where to buy"), Inno Models, Minichamps and Spark directly to ask who their North American importer is. Dealer price lists typically require a resale certificate and business details. Saafir must do this themself.
 
 ---
 
 ## 5. Recommended approach for a solo store owner
 
 **Phase 1: quick wins, no code needed**
-1. **Seller Hub > Research > Product research** (free): sold prices for up to 3 years, manually, per SKU, when deciding a restock. Record Saafir's own observed numbers and his own costs in the tracker.
+1. **Seller Hub > Research > Product research** (free): sold prices for up to 3 years, manually, per SKU, when deciding a restock. Record Saafir's own observed numbers and their own costs in the tracker.
 2. **Wholesale costs:** contact distributors (M&J Toys, Hanz Driven for Inno64/Pop Race, brand "Where to buy"/distribution pages). Real dealer cost is the key input for "buy under market."
 
 **Phase 2: automate active asks via the eBay Browse API**
-3. Saafir creates (only he can do this):
+3. Saafir creates (only they can do this):
    - an **eBay Developers Program account** (free, about 1 business day approval) at developer.ebay.com, accepting the API License Agreement;
    - a **Production keyset** (App ID / Client ID + Cert ID / Client Secret);
    - the **Marketplace Account Deletion** setting: choose **"Not persisting eBay data"** (opt-out) if the tracker stores no eBay user data, or else host an HTTPS endpoint. Without this the Production keyset stays disabled.
