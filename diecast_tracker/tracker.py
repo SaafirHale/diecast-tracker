@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import csv
 import json
+from collections import Counter
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -104,7 +105,9 @@ class Tracker:
             ask = self.summary(m.id, "ask", days, at)
             sold = self.summary(m.id, "sold", days, at)
             cost = self.summary(m.id, "cost", 365, at)
-            ref = sold if sold and sold.n >= self.rules.min_samples else ask
+            # Compare against the market only on enough data to mean something.
+            enough = [x for x in (sold, ask) if x and x.n >= self.rules.min_samples]
+            ref = enough[0] if enough else None
             out.append({
                 "id": m.id, "sku": m.sku, "maker": m.maker, "scale": m.scale, "name": m.name,
                 "marque": m.marque, "store_price": m.store_price, "url": m.url,
@@ -117,12 +120,23 @@ class Tracker:
             })
         return out
 
-    def history(self, model_id: str) -> list[dict]:
+    def history(self, model_id: str, days: int = 90) -> list[dict]:
         rows = self.conn.execute(
             """SELECT id, source, kind, title, price, shipping, currency, url, first_seen, last_seen,
                       comparable, match_status, confidence, flags
                FROM observations WHERE model_id = ? ORDER BY last_seen""", (model_id,)).fetchall()
-        return [dict(r, flags=json.loads(r["flags"] or "{}")) for r in rows]
+        out = [dict(r, flags=json.loads(r["flags"] or "{}"), outlier=False) for r in rows]
+        # Mark the points the stats threw away, so the chart can show them as such.
+        since = db.iso(db.now_utc() - timedelta(days=days))
+        for kind in ("sold", "ask", "cost"):
+            pts = [o for o in out if o["kind"] == kind and o["comparable"] and o["last_seen"] >= since]
+            _, rejected = stats.split_outliers([o["price"] + o["shipping"] for o in pts])
+            left = Counter(rejected)
+            for o in pts:
+                v = o["price"] + o["shipping"]
+                if left[v]:
+                    o["outlier"], left[v] = True, left[v] - 1
+        return out
 
     def alerts(self, include_dismissed=False) -> list[dict]:
         rows = self.conn.execute(
