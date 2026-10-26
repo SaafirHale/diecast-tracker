@@ -1,0 +1,787 @@
+{
+  "source": "midnightgarageco.com public product pages (sitemap + schema.org JSON-LD)",
+  "imported_at": "2026-10-26T06:38:09Z",
+  "count": 60,
+  "models": [
+    {
+      "sku": "PR640127",
+      "maker": "Pop Race",
+      "scale": "1:64",
+      "name": "Pandem Civic EG6 RHD Blue Metallic",
+      "marque": "Honda",
+      "store_price": 29.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/pandem-civic-eg6-rhd-blue-metallic-pop-race-pr640127",
+      "aliases": [
+        "Pandem Civic EG6 RHD (Right Hand Drive) Blue Metallic 1/64 Diecast Model Car by Pop Race"
+      ]
+    },
+    {
+      "sku": "MGT00745",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "Cadillac V-Series.R #31 Jack Aitken - Pipo Derani - Alexander Sims \"Whelen Engineering Racing\" Winner IMSA \"12 Hours of Sebring\" (2023)",
+      "marque": "Cadillac",
+      "store_price": 23.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/cadillac-v-series-r-31-jack-aitken-pipo-derani-alexander-mini-gt-mgt00745",
+      "aliases": [
+        "Cadillac V-Series.R #31 Jack Aitken - Pipo Derani - Alexander Sims \"Whelen Engineering Racing\" Winner IMSA \"12 Hours of Sebring\" (2023) Limited Edition to 5400 pieces Worldwide 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "KHMG217",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "BMW M3 \"Kaido Works Larry Chen V1\" #29 \"7-Eleven\" White and Green with Graphics (Designed by Jun Imai) \"Kaido House\" Special",
+      "marque": "BMW",
+      "store_price": 34.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/bmw-m3-kaido-works-larry-chen-v1-29-7-eleven-white-mini-gt-khmg217",
+      "aliases": [
+        "BMW M3 \"Kaido Works Larry Chen V1\" #29 \"7-Eleven\" White and Green with Graphics (Designed by Jun Imai) \"Kaido House\" Special 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "MGT00717",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "1964 Porsche 911 Slate Gray",
+      "marque": "Porsche",
+      "store_price": 22.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/1964-porsche-911-slate-gray-mini-gt-mgt00717",
+      "aliases": [
+        "1964 Porsche 911 Slate Gray Limited Edition 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "MGT00908-007E",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "Jaguar XKR Green Metallic 007 James Bond \"Die Another Day\" (2002) Movie",
+      "marque": "Jaguar",
+      "store_price": 25.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/jaguar-xkr-green-metallic-007-james-bond-die-another-day-mini-gt-mgt00908-007e",
+      "aliases": [
+        "Jaguar XKR Green Metallic 007 James Bond \"Die Another Day\" (2002) Movie Limited Edition 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "OT1173",
+      "maker": "Otto Mobile",
+      "scale": "1:18",
+      "name": "2024 BMW Reyn Speed Shop 858 CSL \"Designed by JONSIBAL\" Chrome Shadow Metallic",
+      "marque": "BMW",
+      "store_price": 158.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/2024-bmw-reyn-speed-shop-858-csl-designed-by-jonsibal-otto-mobile-ot1173",
+      "aliases": [
+        "2024 BMW Reyn Speed Shop 858 CSL \"Designed by JONSIBAL\" Chrome Shadow Metallic Limited Edition to 2000 pieces Worldwide 1/18 Model Car by Otto Mobile"
+      ]
+    },
+    {
+      "sku": "MGT00726",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "AlphaTauri AT04 #22 Yuki Tsunoda Formula One F1 \"Australian GP\" (2023)",
+      "marque": "AlphaTauri",
+      "store_price": 27.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/alphatauri-at04-22-yuki-tsunoda-formula-one-f1-australian-mini-gt-mgt00726",
+      "aliases": [
+        "AlphaTauri AT04 #22 Yuki Tsunoda Formula One F1 \"Australian GP\" (2023) Limited Edition 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "T64G-TL021-WH",
+      "maker": "Tarmac Works",
+      "scale": "1:64",
+      "name": "Pagani Zonda Cinque Bianco Benny White and Black \"Global64\" Series",
+      "marque": "Pagani",
+      "store_price": 26.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/pagani-zonda-cinque-bianco-benny-white-and-black-global64-tarmac-works-t64g-tl021-wh",
+      "aliases": [
+        "Pagani Zonda Cinque Bianco Benny White and Black \"Global64\" Series 1/64 Diecast Model Car by Tarmac Works"
+      ]
+    },
+    {
+      "sku": "MGT00695",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "1963 Porsche 901 Signal Red",
+      "marque": "Porsche",
+      "store_price": 21.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/1963-porsche-901-signal-red-mini-gt-mgt00695",
+      "aliases": [
+        "1963 Porsche 901 Signal Red Limited Edition to 4200 pieces Worldwide 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "MGT00736",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "Cadillac V-Series.R #311 Jack Aitken - Pipo Derani - Alexander Sims \"Action Express Racing\" \"24 Hours of Le Mans\" (2023)",
+      "marque": "Cadillac",
+      "store_price": 26.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/cadillac-v-series-r-311-jack-aitken-pipo-derani-alexander-mini-gt-mgt00736",
+      "aliases": [
+        "Cadillac V-Series.R #311 Jack Aitken - Pipo Derani - Alexander Sims \"Action Express Racing\" \"24 Hours of Le Mans\" (2023) Limited Edition to 4800 pieces Worldwide 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "IN64-190P-DCM",
+      "maker": "Inno Models",
+      "scale": "1:64",
+      "name": "Pandem Rocket Bunny 190E Black with Red and Yellow Stripes \"Diecast Con Madrid 2026 Event Edition\"",
+      "marque": "Mercedes-Benz",
+      "store_price": 54.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/pandem-rocket-bunny-190e-black-with-red-and-yellow-stripes-inno-models-in64-190p-dcm",
+      "aliases": [
+        "Pandem Rocket Bunny 190E Black with Red and Yellow Stripes \"Diecast Con Madrid 2026 Event Edition\" 1/64 Diecast Model Car by Inno Models"
+      ]
+    },
+    {
+      "sku": "MGT00858",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "Nissan Silvia (S15) LB-Super Silhouette RHD \"Fausto Racing 2024\" Green Metallic",
+      "marque": "Nissan",
+      "store_price": 25.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/nissan-silvia-s15-lb-super-silhouette-rhd-fausto-racing-mini-gt-mgt00858",
+      "aliases": [
+        "Nissan Silvia (S15) LB-Super Silhouette RHD (Right Hand Drive) \"Fausto Racing 2024\" Green Metallic Limited Edition 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "MGT00886",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "Lamborghini Revuelto Giallo (Yellow)",
+      "marque": "Lamborghini",
+      "store_price": 22.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/lamborghini-revuelto-giallo-yellow-mini-gt-mgt00886",
+      "aliases": [
+        "Lamborghini Revuelto Giallo (Yellow) Limited Edition 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "T64-066-WP",
+      "maker": "Tarmac Works",
+      "scale": "1:64",
+      "name": "Mazda RX-7 FC3S Pandem RHD #66 White and Purple with Graphics \"Hobby64\" Series",
+      "marque": "Mazda",
+      "store_price": 27.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/mazda-rx-7-fc3s-pandem-rhd-66-white-and-purple-tarmac-works-t64-066-wp",
+      "aliases": [
+        "Mazda RX-7 FC3S Pandem RHD (Right Hand Drive) #66 White and Purple with Graphics \"Hobby64\" Series 1/64 Diecast Model Car by Tarmac Works"
+      ]
+    },
+    {
+      "sku": "MGT00901-007E",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "Aston Martin DB5 RHD Birch Silver Metallic 007 James Bond \"Thunderball\" (1965) Movie",
+      "marque": "Aston Martin",
+      "store_price": 21.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/aston-martin-db5-rhd-birch-silver-metallic-007-james-bond-mini-gt-mgt00901-007e",
+      "aliases": [
+        "Aston Martin DB5 RHD (Right Hand Drive) Birch Silver Metallic 007 James Bond \"Thunderball\" (1965) Movie Limited Edition 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "T64G-060-WB",
+      "maker": "Tarmac Works",
+      "scale": "1:64",
+      "name": "Toyota Sprinter Trueno AE86 Widebody RHD White and Black with Tarmac Cards \"Global64\" Series",
+      "marque": "Toyota",
+      "store_price": 29.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/toyota-sprinter-trueno-ae86-widebody-rhd-white-and-black-tarmac-works-t64g-060-wb",
+      "aliases": [
+        "Toyota Sprinter Trueno AE86 Widebody RHD (Right Hand Drive) White and Black with Tarmac Cards \"Global64\" Series 1/64 Diecast Model by Tarmac Works"
+      ]
+    },
+    {
+      "sku": "MGT01068",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "Porsche 911 Dakar #19 \"Uncle Rally\" Gray with Graphics and Roof Rack",
+      "marque": "Porsche",
+      "store_price": 25.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/porsche-911-dakar-19-uncle-rally-gray-with-graphics-mini-gt-mgt01068",
+      "aliases": [
+        "Porsche 911 Dakar #19 \"Uncle Rally\" Gray with Graphics and Roof Rack Limited Edition 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "T64G-060-BG",
+      "maker": "Tarmac Works",
+      "scale": "1:64",
+      "name": "Toyota Sprinter Trueno AE86 Widebody RHD \"Jonsibal Designworks\" Black and Gray Metallic \"Global64\" Series",
+      "marque": "Toyota",
+      "store_price": 24.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/toyota-sprinter-trueno-ae86-widebody-rhd-jonsibal-tarmac-works-t64g-060-bg",
+      "aliases": [
+        "Toyota Sprinter Trueno AE86 Widebody RHD (Right Hand Drive) \"Jonsibal Designworks\" Black and Gray Metallic \"Global64\" Series 1/64 Diecast Model by Tarmac Works"
+      ]
+    },
+    {
+      "sku": "IN64-R35LB-AORUS",
+      "maker": "Inno Models",
+      "scale": "1:64",
+      "name": "Nissan GT-R (R35) Widebody RHD Black and White with Graphics \"AORUS X INNO64\"",
+      "marque": "Nissan",
+      "store_price": 34.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/nissan-gt-r-r35-widebody-rhd-black-and-white-with-graphics-inno-models-in64-r35lb-aorus",
+      "aliases": [
+        "Nissan GT-R (R35) Widebody RHD (Right Hand Drive) Black and White with Graphics \"AORUS X INNO64 Limited Edition\" 1/64 Diecast Model Car by Inno Models"
+      ]
+    },
+    {
+      "sku": "MGT01110",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "Volkswagen ID. Buzz Van Pomelo Yellow Metallic and Candy White",
+      "marque": "Volkswagen",
+      "store_price": 21.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/volkswagen-id-buzz-van-pomelo-yellow-metallic-and-candy-mini-gt-mgt01110",
+      "aliases": [
+        "Volkswagen ID. Buzz Van Pomelo Yellow Metallic and Candy White Limited Edition 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "T64G-TL005-BCF",
+      "maker": "Tarmac Works",
+      "scale": "1:64",
+      "name": "Koenigsegg Agera RS Black Carbon with Red Accents \"Global64\" Series",
+      "marque": "Koenigsegg",
+      "store_price": 34.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/koenigsegg-agera-rs-black-carbon-with-red-accents-global64-tarmac-works-t64g-tl005-bcf",
+      "aliases": [
+        "Koenigsegg Agera RS Black Carbon with Red Accents \"Global64\" Series 1/64 Diecast Model Car by Tarmac Works"
+      ]
+    },
+    {
+      "sku": "MGT00757",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "1954 Lincoln Capri Hot Rod Purple Metallic",
+      "marque": "Lincoln",
+      "store_price": 21.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/1954-lincoln-capri-hot-rod-purple-metallic-mini-gt-mgt00757",
+      "aliases": [
+        "1954 Lincoln Capri Hot Rod Purple Metallic Limited Edition to 3600 pieces Worldwide 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "IN64-MR2SW20-RED",
+      "maker": "Inno Models",
+      "scale": "1:64",
+      "name": "Toyota MR2 (SW20) RHD Red",
+      "marque": "Toyota",
+      "store_price": 33.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/toyota-mr2-sw20-rhd-red-inno-models-in64-mr2sw20-red",
+      "aliases": [
+        "Toyota MR2 (SW20) RHD (Right Hand Drive) Red 1/64 Diecast Model Car by Inno Models"
+      ]
+    },
+    {
+      "sku": "PR640301",
+      "maker": "Pop Race",
+      "scale": "1:64",
+      "name": "Mazda 787B #55 Johnny Herbert - Volker Weidler - Bertrand Gachot \"Mazdaspeed\" Winner \"24 Hours of Le Mans\" (1991)",
+      "marque": "Mazda",
+      "store_price": 33.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/mazda-787b-55-johnny-herbert-volker-weidler-bertrand-gachot-pop-race-pr640301",
+      "aliases": [
+        "Mazda 787B #55 Johnny Herbert - Volker Weidler - Bertrand Gachot \"Mazdaspeed\" Winner \"24 Hours of Le Mans\" (1991) 1/64 Diecast Model Car by Pop Race"
+      ]
+    },
+    {
+      "sku": "T64G-F041-DR2",
+      "maker": "Tarmac Works",
+      "scale": "1:64",
+      "name": "McLaren MCL36 #3 Daniel Ricciardo Formula One F1 \"Japanese GP\" (2022) \"Global64\" Series",
+      "marque": "McLaren",
+      "store_price": 27.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/mclaren-mcl36-3-daniel-ricciardo-formula-one-f1-japanese-gp-tarmac-works-t64g-f041-dr2",
+      "aliases": [
+        "McLaren MCL36 #3 Daniel Ricciardo Formula One F1 \"Japanese GP\" (2022) \"Global64\" Series 1/64 Diecast Model Car by Tarmac Works"
+      ]
+    },
+    {
+      "sku": "MGT01079",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "Honda Civic TYPE R \"2024 Pace Car HRC\" White with Red and Blue Graphics",
+      "marque": "Honda",
+      "store_price": 25.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/honda-civic-type-r-2024-pace-car-hrc-white-with-red-mini-gt-mgt01079",
+      "aliases": [
+        "Honda Civic TYPE R \"2024 Pace Car HRC\" White with Red and Blue Graphics Limited Edition 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "T64G-F064-LH1",
+      "maker": "Tarmac Works",
+      "scale": "1:64",
+      "name": "Mercedes-AMG F1 W14 E Performance #44 Lewis Hamilton Pole Position Formula One F1 \"Hungarian GP\" (2023) \"Global64\" Series",
+      "marque": "Mercedes-Benz",
+      "store_price": 24.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/mercedes-amg-f1-w14-e-performance-44-lewis-hamilton-pole-tarmac-works-t64g-f064-lh1",
+      "aliases": [
+        "Mercedes-AMG F1 W14 E Performance #44 Lewis Hamilton Pole Position Formula One F1 \"Hungarian GP\" (2023) \"Global64\" Series 1/64 Diecast Model Car by Tarmac Works"
+      ]
+    },
+    {
+      "sku": "64B0283",
+      "maker": "BM Creations",
+      "scale": "1:64",
+      "name": "Land Rover Range Rover Classic LSE RHD \"Camel Trophy\" Yellow (Dirty Mud Version) with Roof Rack Extra Wheels and Accessories",
+      "marque": "Land Rover",
+      "store_price": 28.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/land-rover-range-rover-classic-lse-rhd-camel-trophy-yellow-bm-creations-64b0283",
+      "aliases": [
+        "Land Rover Range Rover Classic LSE RHD (Right Hand Drive) \"Camel Trophy\" Yellow (Dirty Mud Version) with Roof Rack Extra Wheels and Accessories Limited Edition to 2016 pieces Worldwide 1/64 Diecast Model Car by BM Creations"
+      ]
+    },
+    {
+      "sku": "T64G-F064-MS1",
+      "maker": "Tarmac Works",
+      "scale": "1:64",
+      "name": "Mercedes-AMG F1 W14 E Performance #47 Mick Schumacher Formula One F1 \"Spanish GP Tyre Testing\" (2023) with Pit Board \"Global64\" Series",
+      "marque": "Mercedes-Benz",
+      "store_price": 23.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/mercedes-amg-f1-w14-e-performance-47-mick-schumacher-tarmac-works-t64g-f064-ms1",
+      "aliases": [
+        "Mercedes-AMG F1 W14 E Performance #47 Mick Schumacher Formula One F1 \"Spanish GP Tyre Testing\" (2023) with Pit Board \"Global64\" Series 1/64 Diecast Model by Tarmac Works"
+      ]
+    },
+    {
+      "sku": "PR640114",
+      "maker": "Pop Race",
+      "scale": "1:64",
+      "name": "Skyline GT-R V8 Drift \"Hakosuka\" RHD #12 \"Calsonic\" Blue with Graphics",
+      "marque": "Nissan",
+      "store_price": 25.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/skyline-gt-r-v8-drift-hakosuka-rhd-12-calsonic-blue-pop-race-pr640114",
+      "aliases": [
+        "Skyline GT-R V8 Drift \"Hakosuka\" RHD (Right Hand Drive) #12 \"Calsonic\" Blue with Graphics 1/64 Diecast Model Car by Pop Race"
+      ]
+    },
+    {
+      "sku": "IN64-E30P-CNY26",
+      "maker": "Inno Models",
+      "scale": "1:64",
+      "name": "Pandem Rocket Bunny E30 \"Year of the Horse - Chinese New Year 2026 Special Edition\" Red Metallic with Graphics",
+      "marque": "BMW",
+      "store_price": 36.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/pandem-rocket-bunny-e30-year-of-the-horse-chinese-new-year-inno-models-in64-e30p-cny26",
+      "aliases": [
+        "Pandem Rocket Bunny E30 \"Year of the Horse - Chinese New Year 2026 Special Edition\" Red Metallic with Graphics Limited Edition to 8888 pieces Worldwide 1/64 Diecast Model Car by Inno Models"
+      ]
+    },
+    {
+      "sku": "T64G-043-SC",
+      "maker": "Tarmac Works",
+      "scale": "1:64",
+      "name": "Nissan Skyline HT 2000GT-R RHD Silver Chrome \"Japan Special Edition\" \"Global64\" Series",
+      "marque": "Nissan",
+      "store_price": 30.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/nissan-skyline-ht-2000gt-r-rhd-silver-chrome-japan-special-tarmac-works-t64g-043-sc",
+      "aliases": [
+        "Nissan Skyline HT 2000GT-R RHD (Right Hand Drive) Silver Chrome \"Japan Special Edition\" \"Global64\" Series 1/64 Diecast Model Car by Tarmac Works"
+      ]
+    },
+    {
+      "sku": "T64G-072-GY",
+      "maker": "Tarmac Works",
+      "scale": "1:64",
+      "name": "Mercedes-Benz S 65 AMG Tectite Gray Metallic \"Global64\" Series",
+      "marque": "Mercedes-Benz",
+      "store_price": 21.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/mercedes-benz-s-65-amg-tectite-gray-metallic-global64-tarmac-works-t64g-072-gy",
+      "aliases": [
+        "Mercedes-Benz S 65 AMG Tectite Gray Metallic \"Global64\" Series 1/64 Diecast Model by Tarmac Works"
+      ]
+    },
+    {
+      "sku": "KHMG263",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "Nissan Fairlady Z RHD #1 \"Tamiya Racing - Frog Racing Team\" White and Pink (Designed by Jun Imai) \"Kaido House\" Special",
+      "marque": "Nissan",
+      "store_price": 26.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/nissan-fairlady-z-rhd-1-tamiya-racing-frog-racing-team-mini-gt-khmg263",
+      "aliases": [
+        "Nissan Fairlady Z RHD (Right Hand Drive) #1 \"Tamiya Racing - Frog Racing Team\" White and Pink (Designed by Jun Imai) \"Kaido House\" Special 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "GT507",
+      "maker": "GT Spirit",
+      "scale": "1:18",
+      "name": "2024 BMW M5 (G90) Marina Bay Blue Metallic with Black Top",
+      "marque": "BMW",
+      "store_price": 163.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/2024-bmw-m5-g90-marina-bay-blue-metallic-with-black-top-gt-spirit-gt507",
+      "aliases": [
+        "2024 BMW M5 (G90) Marina Bay Blue Metallic with Black Top 1/18 Model Car by GT Spirit"
+      ]
+    },
+    {
+      "sku": "MGT01088",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "Lotus 99T #12 Ayrton Senna Winner Formula One F1 \"Monaco GP\" (1987) with Driver Figure",
+      "marque": "Lotus",
+      "store_price": 24.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/lotus-99t-12-ayrton-senna-winner-formula-one-f1-monaco-gp-mini-gt-mgt01088",
+      "aliases": [
+        "Lotus 99T #12 Ayrton Senna Winner Formula One F1 \"Monaco GP\" (1987) with Driver Figure Limited Edition 1/64 Die Cast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "MGT00865",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "Lamborghini Countach LPI 800-4 Viola 30th Metallic",
+      "marque": "Lamborghini",
+      "store_price": 22.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/lamborghini-countach-lpi-800-4-viola-30th-metallic-mini-gt-mgt00865",
+      "aliases": [
+        "Lamborghini Countach LPI 800-4 Viola 30th Metallic Limited Edition 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "IN64-RX7FCP-TMCSS25",
+      "maker": "Inno Models",
+      "scale": "1:64",
+      "name": "Mazda RX-7 (FC3S) \"Pandem Rocket Bunny\" White and Red with Black Stripes \"The Model Car Show Singapore 2025 Event Edition\"",
+      "marque": "Mazda",
+      "store_price": 54.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/mazda-rx-7-fc3s-pandem-rocket-bunny-white-and-red-inno-models-in64-rx7fcp-tmcss25",
+      "aliases": [
+        "Mazda RX-7 (FC3S) \"Pandem Rocket Bunny\" White and Red with Black Stripes \"The Model Car Show Singapore 2025 Event Edition\" 1/64 Diecast Model Car by Inno Models"
+      ]
+    },
+    {
+      "sku": "IN64-R34TS-WHI",
+      "maker": "Inno Models",
+      "scale": "1:64",
+      "name": "Nissan Skyline GT-R (R34) \"Top Secret\" RHD White with Carbon Hood",
+      "marque": "Nissan",
+      "store_price": 39.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/nissan-skyline-gt-r-r34-top-secret-rhd-white-with-carbon-inno-models-in64-r34ts-whi",
+      "aliases": [
+        "Nissan Skyline GT-R (R34) \"Top Secret\" RHD (Right Hand Drive) White with Carbon Hood 1/64 Diecast Model Car by Inno Models"
+      ]
+    },
+    {
+      "sku": "PR640217",
+      "maker": "Pop Race",
+      "scale": "1:64",
+      "name": "Datsun Pandem 620 Pickup Truck #66 Blue Metallic with White Stripes and Graphics",
+      "marque": "Datsun",
+      "store_price": 33.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/datsun-pandem-620-pickup-truck-66-blue-metallic-with-white-pop-race-pr640217",
+      "aliases": [
+        "Datsun Pandem 620 Pickup Truck #66 Blue Metallic with White Stripes and Graphics 1/64 Diecast Model Car by Pop Race"
+      ]
+    },
+    {
+      "sku": "MGT00785",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "Mazda RX-7 LB-Super Silhouette #20 \"Liberty Walk\" Black",
+      "marque": "Mazda",
+      "store_price": 23.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/mazda-rx-7-lb-super-silhouette-20-liberty-walk-black-mini-gt-mgt00785",
+      "aliases": [
+        "Mazda RX-7 LB-Super Silhouette #20 \"Liberty Walk\" Black Limited Edition 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "T64R-041-CAMP",
+      "maker": "Tarmac Works",
+      "scale": "1:64",
+      "name": "Toyota Hilux Pickup Truck RHD Gray with Camping Equipment \"Road64\" Series",
+      "marque": "Toyota",
+      "store_price": 28.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/toyota-hilux-pickup-truck-rhd-gray-with-camping-equipment-tarmac-works-t64r-041-camp",
+      "aliases": [
+        "Toyota Hilux Pickup Truck RHD (Right Hand Drive) Gray with Camping Equipment \"Road64\" Series 1/64 Diecast Model Car by Tarmac Works"
+      ]
+    },
+    {
+      "sku": "JC64-005-RD",
+      "maker": "Tarmac Works",
+      "scale": "1:64",
+      "name": "Mazda RX-7 FD3S RHD Red \"Student Driver\" \"J Collection\" Series",
+      "marque": "Mazda",
+      "store_price": 21.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/mazda-rx-7-fd3s-rhd-red-student-driver-j-collection-series-tarmac-works-jc64-005-rd",
+      "aliases": [
+        "Mazda RX-7 FD3S RHD (Right Hand Drive) Red \"Student Driver\" \"J Collection\" Series 1/64 Diecast Model by Tarmac Works"
+      ]
+    },
+    {
+      "sku": "MGT00913-007E",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "Aston Martin DB5 RHD Birch Silver Metallic (Damaged) 007 James Bond \"Skyfall\" (2012) Movie",
+      "marque": "Aston Martin",
+      "store_price": 23.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/aston-martin-db5-rhd-birch-silver-metallic-damaged-007-mini-gt-mgt00913-007e",
+      "aliases": [
+        "Aston Martin DB5 RHD (Right Hand Drive) Birch Silver Metallic (Damaged) 007 James Bond \"Skyfall\" (2012) Movie Limited Edition 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "KHMG229",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "Datsun 510 Street \"Nismo V3\" Red Metallic (Designed by Jun Imai) \"Kaido House\" Special",
+      "marque": "Datsun",
+      "store_price": 26.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/datsun-510-street-nismo-v3-red-metallic-designed-by-jun-mini-gt-khmg229",
+      "aliases": [
+        "Datsun 510 Street \"Nismo V3\" Red Metallic (Designed by Jun Imai) \"Kaido House\" Special 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "T64T-TL002-EVA",
+      "maker": "Tarmac Works",
+      "scale": "1:64",
+      "name": "Mitsubishi Fuso Canter Mobile Display Truck RHD \"EVA Racing\" White with Graphics \"Truck64\" Series",
+      "marque": "Mitsubishi",
+      "store_price": 36.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/mitsubishi-fuso-canter-mobile-display-truck-rhd-eva-racing-tarmac-works-t64t-tl002-eva",
+      "aliases": [
+        "Mitsubishi Fuso Canter Mobile Display Truck RHD (Right Hand Drive) \"EVA Racing\" White with Graphics \"Truck64\" Series 1/64 Diecast Model Car by Tarmac Works"
+      ]
+    },
+    {
+      "sku": "T64G-075-BL",
+      "maker": "Tarmac Works",
+      "scale": "1:64",
+      "name": "Mazda RX-7 \"VeilSide Fortune7\" RHD Blue \"Global64\" Series",
+      "marque": "Mazda",
+      "store_price": 25.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/mazda-rx-7-veilside-fortune7-rhd-blue-global64-series-tarmac-works-t64g-075-bl",
+      "aliases": [
+        "Mazda RX-7 \"VeilSide Fortune7\" RHD (Right Hand Drive) Blue \"Global64\" Series 1/64 Diecast Model Car by Tarmac Works"
+      ]
+    },
+    {
+      "sku": "MGT00851",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "ABARTH 595 #49 \"LB-Works x Abas Works\" Pink",
+      "marque": "Abarth",
+      "store_price": 22.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/abarth-595-49-lb-works-x-abas-works-pink-mini-gt-mgt00851",
+      "aliases": [
+        "ABARTH 595 #49 \"LB-Works x Abas Works\" Pink Limited Edition 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "T64G-TL052-BL",
+      "maker": "Tarmac Works",
+      "scale": "1:64",
+      "name": "Koenigsegg Jesko Attack Blue Metallic \"Global64\" Series",
+      "marque": "Koenigsegg",
+      "store_price": 22.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/koenigsegg-jesko-attack-blue-metallic-global64-series-1-64-tarmac-works-t64g-tl052-bl",
+      "aliases": [
+        "Koenigsegg Jesko Attack Blue Metallic \"Global64\" Series 1/64 Diecast Model by Tarmac Works"
+      ]
+    },
+    {
+      "sku": "OT469",
+      "maker": "Otto Mobile",
+      "scale": "1:18",
+      "name": "2021 Porsche Cayman 718 GT4 RS Clubsport #4 Black with Blue Graphics",
+      "marque": "Porsche",
+      "store_price": 198.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/2021-porsche-cayman-718-gt4-rs-clubsport-4-black-with-blue-otto-mobile-ot469",
+      "aliases": [
+        "2021 Porsche Cayman 718 GT4 RS Clubsport #4 Black with Blue Graphics Limited Edition to 999 pieces Worldwide 1/18 Model Car by Otto Mobile"
+      ]
+    },
+    {
+      "sku": "MGT00515",
+      "maker": "Mini GT",
+      "scale": "1:64",
+      "name": "BMW 750Li xDrive Bernina Gray Amber Effect with Sunroof",
+      "marque": "BMW",
+      "store_price": 22.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/bmw-750li-xdrive-bernina-gray-amber-effect-with-sunroof-mini-gt-mgt00515",
+      "aliases": [
+        "BMW 750Li xDrive Bernina Gray Amber Effect with Sunroof Limited Edition to 2400 pieces Worldwide 1/64 Diecast Model Car by Mini GT"
+      ]
+    },
+    {
+      "sku": "GT492",
+      "maker": "GT Spirit",
+      "scale": "1:18",
+      "name": "2024 Porsche 911 (964) RWB \"Qeema\" Yellow",
+      "marque": "Porsche",
+      "store_price": 158.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/2024-porsche-911-964-rwb-qeema-yellow-gt-spirit-gt492",
+      "aliases": [
+        "2024 Porsche 911 (964) RWB \"Qeema\" Yellow 1/18 Model Car by GT Spirit"
+      ]
+    },
+    {
+      "sku": "OT1167",
+      "maker": "Otto Mobile",
+      "scale": "1:18",
+      "name": "2015 Nissan PANDEM Fairlady Z RHD White",
+      "marque": "Nissan",
+      "store_price": 148.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/2015-nissan-pandem-fairlady-z-rhd-white-otto-mobile-ot1167",
+      "aliases": [
+        "2015 Nissan PANDEM Fairlady Z RHD (Right Hand Drive) White Limited Edition to 2000 pieces Worldwide 1/18 Model Car by Otto Mobile"
+      ]
+    },
+    {
+      "sku": "GT560",
+      "maker": "GT Spirit",
+      "scale": "1:18",
+      "name": "2021 Nissan Silvia (S15) LB-Super Silhouette RHD #23 White with Yellow Stripes",
+      "marque": "Nissan",
+      "store_price": 163.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/2021-nissan-silvia-s15-lb-super-silhouette-rhd-23-white-gt-spirit-gt560",
+      "aliases": [
+        "2021 Nissan Silvia (S15) LB-Super Silhouette RHD (Right Hand Drive) #23 White with Yellow Stripes 1/18 Model Car by GT Spirit"
+      ]
+    },
+    {
+      "sku": "GT570",
+      "maker": "GT Spirit",
+      "scale": "1:18",
+      "name": "2020 Nissan Skyline GT-R (R34) LB-Super Silhouette RHD #5 Red and Black",
+      "marque": "Nissan",
+      "store_price": 163.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/2020-nissan-skyline-gt-r-r34-lb-super-silhouette-rhd-5-red-gt-spirit-gt570",
+      "aliases": [
+        "2020 Nissan Skyline GT-R (R34) LB-Super Silhouette RHD (Right Hand Drive) #5 Red and Black 1/18 Model Car by GT Spirit"
+      ]
+    },
+    {
+      "sku": "GT958",
+      "maker": "GT Spirit",
+      "scale": "1:18",
+      "name": "2024 Porsche 911 Turbo LB-Works White with Black Top",
+      "marque": "Porsche",
+      "store_price": 163.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/2024-porsche-911-turbo-lb-works-white-with-black-top-gt-spirit-gt958",
+      "aliases": [
+        "2024 Porsche 911 Turbo LB-Works White with Black Top 1/18 Model Car by GT Spirit"
+      ]
+    },
+    {
+      "sku": "T64T-TL001-LBB",
+      "maker": "Tarmac Works",
+      "scale": "1:64",
+      "name": "Mitsubishi Fuso Super Great Truck RHD with Transporter \"Liberty Walk\" Black \"Truck64\" Series",
+      "marque": "Mitsubishi",
+      "store_price": 93.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/mitsubishi-fuso-super-great-truck-rhd-with-transporter-tarmac-works-t64t-tl001-lbb",
+      "aliases": [
+        "Mitsubishi Fuso Super Great Truck RHD (Right Hand Drive) with Transporter \"Liberty Walk\" Black \"Truck64\" Series 1/64 Diecast Model Car by Tarmac Works"
+      ]
+    },
+    {
+      "sku": "PR640481-0485",
+      "maker": "Pop Race",
+      "scale": "1:64",
+      "name": "Nissan Pandem Fuso-300 Flatbed Truck RHD Purple Chrome and Lotus Pandem Elise Purple Chrome with Graphics 2 Car Box Set \"Hobby Expo China 2026\"",
+      "marque": "Nissan",
+      "store_price": 100.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/nissan-pandem-fuso-300-flatbed-truck-rhd-purple-chrome-pop-race-pr640481-0485",
+      "aliases": [
+        "Nissan Pandem Fuso-300 Flatbed Truck RHD (Right Hand Drive) Purple Chrome and Lotus Pandem Elise Purple Chrome with Graphics 2 Car Box Set \"Hobby Expo China 2026\" 1/64 Diecast Model Car by Pop Race"
+      ]
+    },
+    {
+      "sku": "PR640493",
+      "maker": "Pop Race",
+      "scale": "1:64",
+      "name": "Mazda RX-7 (FD3S) RHD \"BAPE (A Bathing Ape)\" Purple Camouflage",
+      "marque": "Mazda",
+      "store_price": 54.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/mazda-rx-7-fd3s-rhd-bape-a-bathing-ape-purple-camouflage-pop-race-pr640493",
+      "aliases": [
+        "Mazda RX-7 (FD3S) RHD (Right Hand Drive) \"BAPE (A Bathing Ape)\" Purple Camouflage 1/64 Diecast Model Car by Pop Race"
+      ]
+    },
+    {
+      "sku": "OT1123",
+      "maker": "Otto Mobile",
+      "scale": "1:18",
+      "name": "2023 Toyota Supra GT4 100 Edition Plasma Orange Metallic",
+      "marque": "Toyota",
+      "store_price": 168.99,
+      "in_stock": true,
+      "url": "https://www.midnightgarageco.com/product/2023-toyota-supra-gt4-100-edition-plasma-orange-metallic-otto-mobile-ot1123",
+      "aliases": [
+        "2023 Toyota Supra GT4 100 Edition Plasma Orange Metallic Limited Edition to 999 pieces Worldwide 1/18 Model Car by Otto Mobile"
+      ]
+    }
+  ]
+}
