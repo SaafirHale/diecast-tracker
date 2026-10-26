@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "diecast-tracker-demo",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "diecast_tracker", "demo", "--port", "8064"],
+      "port": 8064
+    }
+  ]
+}

@@ -138,7 +138,7 @@ class Tracker:
             """SELECT id, source, kind, title, price, shipping, match_status, model_id, confidence,
                       flags, reasons, candidates, last_seen
                FROM observations WHERE match_status IN ('ambiguous', 'rejected', 'no_match')
-               ORDER BY last_seen DESC LIMIT ?""", (limit,)).fetchall()
+               ORDER BY match_status != 'ambiguous', last_seen DESC LIMIT ?""", (limit,)).fetchall()
         return [dict(r, flags=json.loads(r["flags"] or "{}"), reasons=json.loads(r["reasons"] or "[]"),
                      candidates=json.loads(r["candidates"] or "[]")) for r in rows]
 

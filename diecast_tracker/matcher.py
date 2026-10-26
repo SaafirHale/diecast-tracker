@@ -171,6 +171,8 @@ class Matcher:
         l_numbers = N.race_numbers(title)
         l_years = N.years(title)
         l_steer = N.steering(title)
+        # Words that triggered a flag ("box damaged") describe the listing, not a model.
+        flag_words = {w for trig in flags.values() for w in N.tokens(trig)}
 
         if l_others and not l_makers:
             return MatchResult("no_match", flags=flags,
@@ -204,9 +206,13 @@ class Matcher:
                 if not any(self.weight(t) >= 2.0 for t in matched):
                     score *= 0.5                  # nothing distinctive matched
                 reasons.append(f"tokens {matched}")
+                missing = [t for t in sorted(ix.tokens, key=self.weight, reverse=True)[:BUDGET_TOKENS]
+                           if t not in matched]
+                if missing:
+                    reasons.append(f"missing {missing}")
                 # Words that are rare in the catalogue but absent from this
                 # model point at a sibling ("Skyfall" vs "Thunderball").
-                foreign = [t for t in l_toks if t in self.idf and t not in ix.all_tokens
+                foreign = [t for t in l_toks if t in self.idf and t not in ix.all_tokens and t not in flag_words
                            and self.weight(t) >= FOREIGN_WEIGHT]
                 if foreign:
                     score *= 0.85 ** min(len(set(foreign)), 3)
@@ -263,6 +269,10 @@ class Matcher:
 
         best = viable[0]
         runner = viable[1].score if len(viable) > 1 else 0.0
+        by_number = [c for c in viable if c.how == "item_number"]
+        if len(by_number) == 1:
+            # A typed item number beats any fuzzy near-miss on the title.
+            best, runner = by_number[0], 0.0
 
         # A flag word that is part of the model's own name ("Birch Silver
         # Metallic (Damaged)") describes the model, not the listing.

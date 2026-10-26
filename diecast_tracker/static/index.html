@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diecast Price Tracker</title>
+<style>
+:root {
+  color-scheme: light;
+  --surface-0: #f4f3f0;
+  --surface-1: #fcfcfb;
+  --surface-2: #efeeea;
+  --border: #dddcd6;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #77766f;
+  --accent: #2a78d6;
+  --series-sold: #2a78d6;   /* categorical slot 1 */
+  --series-ask: #eb6834;    /* categorical slot 2 */
+  --band: #e4e3de;
+  --good: #0c7a0c;
+  --critical: #c23434;
+  --warning-ink: #8a5a00;
+  --chip: #e8e7e2;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --surface-0: #121211;
+    --surface-1: #1a1a19;
+    --surface-2: #242422;
+    --border: #34342f;
+    --text-primary: #f0efec;
+    --text-secondary: #c3c2b7;
+    --text-muted: #9a998f;
+    --accent: #3987e5;
+    --series-sold: #3987e5;
+    --series-ask: #d95926;
+    --band: #2c2c29;
+    --good: #3fbf3f;
+    --critical: #e66767;
+    --warning-ink: #f0b84a;
+    --chip: #2c2c29;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface-0: #121211; --surface-1: #1a1a19; --surface-2: #242422; --border: #34342f;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #9a998f; --accent: #3987e5;
+  --series-sold: #3987e5; --series-ask: #d95926; --band: #2c2c29; --good: #3fbf3f;
+  --critical: #e66767; --warning-ink: #f0b84a; --chip: #2c2c29;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--surface-0); color: var(--text-primary);
+  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+a { color: var(--accent); }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 20px 16px 48px; }
+header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 14px; }
+h1 { font-size: 20px; margin: 0; letter-spacing: -0.01em; }
+.sub { color: var(--text-secondary); }
+.banner {
+  border: 1px solid var(--warning-ink); color: var(--warning-ink); background: transparent;
+  border-radius: 8px; padding: 8px 12px; margin-bottom: 14px; font-weight: 500;
+}
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px; }
+.tile { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+.tile .k { color: var(--text-secondary); font-size: 12px; }
+.tile .v { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; }
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 12px; overflow-x: auto; }
+.tabs button {
+  background: none; border: 0; border-bottom: 2px solid transparent; color: var(--text-secondary);
+  padding: 8px 12px; font: inherit; cursor: pointer; white-space: nowrap;
+}
+.tabs button[aria-selected="true"] { color: var(--text-primary); border-bottom-color: var(--accent); font-weight: 600; }
+.count { background: var(--chip); border-radius: 10px; padding: 0 7px; font-size: 12px; margin-left: 4px; }
+.panel { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px; border-bottom: 1px solid var(--border); }
+.filters input, .filters select {
+  font: inherit; color: var(--text-primary); background: var(--surface-0);
+  border: 1px solid var(--border); border-radius: 6px; padding: 5px 8px;
+}
+.filters input { flex: 1 1 200px; min-width: 0; }
+.scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-size: 12px; font-weight: 600; color: var(--text-secondary); white-space: nowrap; user-select: none; }
+th[data-sort] { cursor: pointer; }
+th[data-sort]:hover { color: var(--text-primary); }
+td.num, th.num { text-align: right; white-space: nowrap; }
+tbody tr.row { cursor: pointer; }
+tbody tr.row:hover, tbody tr.row.sel { background: var(--surface-2); }
+.name { font-weight: 500; }
+.meta { color: var(--text-muted); font-size: 12px; }
+.chip { display: inline-block; background: var(--chip); color: var(--text-secondary); border-radius: 4px; padding: 0 6px; font-size: 11px; margin-right: 4px; }
+.muted { color: var(--text-muted); }
+.range { display: block; position: relative; height: 8px; width: 110px; margin-top: 5px; }
+.range .bar { position: absolute; top: 2px; height: 4px; border-radius: 2px; background: var(--text-muted); opacity: .45; }
+.range .med { position: absolute; top: 0; width: 2px; height: 8px; background: var(--text-primary); }
+.range .store { position: absolute; top: -1px; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: var(--surface-1); border: 2px solid var(--text-secondary); }
+.detail { padding: 14px; border-top: 1px solid var(--border); }
+.detail h2 { font-size: 16px; margin: 0 0 2px; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; color: var(--text-secondary); font-size: 12px; margin: 10px 0 4px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+.legend i.sold { background: var(--series-sold); }
+.legend i.ask { border: 2px solid var(--series-ask); background: var(--surface-1); }
+.legend i.line { width: 16px; height: 0; border-radius: 0; border-top: 2px dashed var(--text-secondary); }
+.legend i.band { width: 16px; height: 10px; border-radius: 2px; background: var(--band); }
+.chart { position: relative; }
+.chart svg { display: block; width: 100%; height: auto; }
+.tip {
+  position: absolute; pointer-events: none; background: var(--surface-1); border: 1px solid var(--border);
+  border-radius: 6px; padding: 6px 8px; font-size: 12px; box-shadow: 0 4px 14px rgba(0,0,0,.12);
+  max-width: 280px; display: none; z-index: 2;
+}
+.alerts { display: grid; gap: 10px; padding: 10px; }
+.alert { display: grid; grid-template-columns: 1fr auto; gap: 8px; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; background: var(--surface-1); }
+.alert .big { font-size: 18px; font-weight: 600; }
+.alert .note { color: var(--warning-ink); font-size: 12px; }
+.alert button { font: inherit; font-size: 12px; background: none; border: 1px solid var(--border); color: var(--text-secondary); border-radius: 6px; padding: 3px 8px; cursor: pointer; align-self: start; }
+.empty { padding: 24px; color: var(--text-muted); text-align: center; }
+.status-ambiguous { color: var(--warning-ink); } .status-rejected { color: var(--critical); }
+@media (max-width: 720px) {
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hide-sm { display: none; }
+  .tile .v { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Diecast Price Tracker</h1>
+    <span class="sub">Midnight Garage Co · market prices for the catalogue</span>
+  </header>
+  <div id="banner" class="banner" hidden>Demo data. These prices are synthetic and generated for testing. They are not market prices.</div>
+
+  <section class="tiles" aria-label="Summary">
+    <div class="tile"><div class="k">Models in catalogue</div><div class="v" id="t-models">–</div></div>
+    <div class="tile"><div class="k">With market data</div><div class="v" id="t-data">–</div></div>
+    <div class="tile"><div class="k">Open alerts</div><div class="v" id="t-alerts">–</div></div>
+    <div class="tile"><div class="k">Listings needing a decision</div><div class="v" id="t-review">–</div></div>
+  </section>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="models" aria-selected="true">Models</button>
+    <button role="tab" data-tab="alerts" aria-selected="false">Alerts<span class="count" id="c-alerts">0</span></button>
+    <button role="tab" data-tab="review" aria-selected="false">Review queue<span class="count" id="c-review">0</span></button>
+  </nav>
+
+  <section id="tab-models" class="panel">
+    <div class="filters">
+      <input id="q" type="search" placeholder="Search model, SKU, marque" aria-label="Search">
+      <select id="f-maker" aria-label="Maker"><option value="">All makers</option></select>
+      <select id="f-scale" aria-label="Scale"><option value="">All scales</option></select>
+      <select id="f-window" aria-label="Show">
+        <option value="">All models</option><option value="data">With market data</option>
+        <option value="over">Store above market</option><option value="under">Store below market</option>
+      </select>
+    </div>
+    <div class="scroll">
+      <table>
+        <thead><tr>
+          <th data-sort="name">Model</th>
+          <th class="num" data-sort="store_price">Store</th>
+          <th class="num" data-sort="median">Market median</th>
+          <th class="hide-sm">Typical range (p25–p75)</th>
+          <th class="num" data-sort="store_vs_market">Store vs market</th>
+          <th class="num" data-sort="open_alerts">Alerts</th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="tab-alerts" class="panel" hidden><div id="alerts" class="alerts"></div></section>
+
+  <section id="tab-review" class="panel" hidden>
+    <div class="scroll"><table>
+      <thead><tr><th>Decision</th><th>Listing title</th><th class="num">Price</th><th class="hide-sm">Why</th><th class="hide-sm">Closest</th></tr></thead>
+      <tbody id="review"></tbody>
+    </table></div>
+  </section>
+</div>
+
+<script>
+const $ = (s, el = document) => el.querySelector(s);
+const money = v => v == null ? "–" : "$" + Number(v).toFixed(2);
+const pct = v => v == null ? "–" : (v > 0 ? "+" : "") + Math.round(v * 100) + "%";
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const api = p => fetch(p).then(r => r.json());
+
+let models = [], sortKey = "open_alerts", sortDir = -1, selected = null;
+const ref = m => (m.sold && m.sold.n >= 5) ? {...m.sold, kind: "sold"} : (m.ask ? {...m.ask, kind: "ask"} : (m.sold ? {...m.sold, kind: "sold"} : null));
+
+async function load() {
+  const [meta, ov, al, rv] = await Promise.all([api("/api/meta"), api("/api/overview"), api("/api/alerts"), api("/api/review")]);
+  $("#banner").hidden = !meta.demo;
+  models = ov;
+  $("#t-models").textContent = ov.length;
+  $("#t-data").textContent = ov.filter(ref).length;
+  $("#t-alerts").textContent = al.length; $("#c-alerts").textContent = al.length;
+  const toReview = rv.filter(r => r.match_status === "ambiguous");
+  $("#t-review").textContent = toReview.length; $("#c-review").textContent = toReview.length;
+  fillSelect("#f-maker", [...new Set(ov.map(m => m.maker))].sort());
+  fillSelect("#f-scale", [...new Set(ov.map(m => m.scale))].sort());
+  renderModels(); renderAlerts(al); renderReview(rv);
+}
+
+function fillSelect(sel, values) {
+  const el = $(sel); if (el.options.length > 1) return;
+  values.forEach(v => el.add(new Option(v, v)));
+}
+
+function renderModels() {
+  const q = $("#q").value.trim().toLowerCase(), mk = $("#f-maker").value, sc = $("#f-scale").value, w = $("#f-window").value;
+  let rows = models.filter(m =>
+    (!q || [m.name, m.sku, m.marque, m.maker].join(" ").toLowerCase().includes(q)) &&
+    (!mk || m.maker === mk) && (!sc || m.scale === sc) &&
+    (!w || (w === "data" && ref(m)) || (w === "over" && m.store_vs_market > 0) || (w === "under" && m.store_vs_market < 0)));
+  const val = m => sortKey === "median" ? (ref(m)?.median ?? -1) : (m[sortKey] ?? -Infinity);
+  rows.sort((a, b) => {
+    const x = val(a), y = val(b);
+    return (typeof x === "string" ? x.localeCompare(y) : x - y) * sortDir || (!!ref(b) - !!ref(a)) || a.name.localeCompare(b.name);
+  });
+  const tb = $("#rows");
+  if (!rows.length) { tb.innerHTML = `<tr><td colspan="6" class="empty">No models match these filters.</td></tr>`; return; }
+  tb.innerHTML = rows.map(m => {
+    const r = ref(m);
+    const diff = m.store_vs_market;
+    return `<tr class="row ${selected === m.id ? "sel" : ""}" data-id="${esc(m.id)}">
+      <td><div class="name">${esc(m.name)}</div><div class="meta">${esc(m.maker)} · ${esc(m.scale)} · ${esc(m.sku)}</div></td>
+      <td class="num">${money(m.store_price)}</td>
+      <td class="num">${r ? money(r.median) + `<div class="meta">${r.kind} · n=${r.n}</div>` : '<span class="muted">no data</span>'}</td>
+      <td class="hide-sm">${r ? rangeStrip(r, m.store_price) + `<div class="meta">${money(r.p25)} – ${money(r.p75)}</div>` : ""}</td>
+      <td class="num">${pct(diff)}${diff != null ? `<div class="meta">${diff > 0 ? "above" : diff < 0 ? "below" : "at"} market</div>` : ""}</td>
+      <td class="num">${m.open_alerts || '<span class="muted">0</span>'}</td>
+    </tr>${selected === m.id ? `<tr><td colspan="6" style="padding:0"><div class="detail" id="detail">Loading…</div></td></tr>` : ""}`;
+  }).join("");
+  if (selected) loadDetail(selected);
+}
+
+function rangeStrip(r, store) {
+  const lo = Math.min(r.low, store ?? r.low), hi = Math.max(r.high, store ?? r.high), span = (hi - lo) || 1;
+  const x = v => ((v - lo) / span * 100).toFixed(1) + "%";
+  return `<span class="range" title="p25–p75 bar, median tick, store price ring">
+    <span class="bar" style="left:${x(r.p25)};width:calc(${x(r.p75)} - ${x(r.p25)})"></span>
+    <span class="med" style="left:${x(r.median)}"></span>
+    ${store ? `<span class="store" style="left:${x(store)}"></span>` : ""}</span>`;
+}
+
+async function loadDetail(id) {
+  const d = await api("/api/model/" + encodeURIComponent(id));
+  const el = $("#detail"); if (!el) return;
+  const m = d.model, r = ref(m), obs = d.history;
+  el.innerHTML = `<h2>${esc(m.name)}</h2>
+    <div class="meta">${esc(m.maker)} · ${esc(m.scale)} · ${esc(m.sku)} · store ${money(m.store_price)}
+      ${m.url ? ` · <a href="${esc(m.url)}" target="_blank" rel="noopener">store page</a>` : ""}</div>
+    <div class="legend">
+      <span><i class="sold"></i>Sold (landed)</span><span><i class="ask"></i>Asking (landed)</span>
+      <span><i class="band"></i>p25–p75 ${r ? "of " + r.kind : ""}</span><span><i class="line"></i>Store price</span>
+    </div>
+    <div class="chart" id="chart"></div>
+    <div class="scroll"><table>
+      <thead><tr><th>Seen</th><th>Kind</th><th>Listing</th><th class="num">Landed</th><th>Counted</th></tr></thead>
+      <tbody>${obs.slice().reverse().slice(0, 40).map(o => `<tr>
+        <td class="meta">${esc(o.last_seen.slice(0, 10))}</td><td>${esc(o.kind)}</td>
+        <td>${o.url ? `<a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.title)}</a>` : esc(o.title)}
+          ${Object.keys(o.flags).map(f => `<span class="chip">${esc(f)}</span>`).join("")}</td>
+        <td class="num">${money(o.price + o.shipping)}</td>
+        <td>${o.comparable ? "yes" : '<span class="muted">no</span>'}</td></tr>`).join("")}</tbody>
+    </table></div>`;
+  drawChart($("#chart"), obs.filter(o => o.comparable && (o.kind === "sold" || o.kind === "ask")), r, m.store_price);
+}
+
+function drawChart(host, obs, r, store) {
+  if (!obs.length) { host.innerHTML = `<div class="empty">No comparable prices yet.</div>`; return; }
+  const W = 760, H = 260, L = 52, R = 20, T = 14, B = 28;
+  const ts = obs.map(o => Date.parse(o.last_seen));
+  const now = Date.now(), t0 = Math.min(...ts, now - 90 * 864e5), t1 = Math.max(...ts, now) + 2 * 864e5;
+  const ys = obs.map(o => o.price + o.shipping).concat(store ? [store] : []);
+  let y0 = Math.min(...ys), y1 = Math.max(...ys); const pad = (y1 - y0) * 0.08 || y1 * 0.1;
+  y0 = Math.max(0, y0 - pad); y1 += pad;
+  const X = t => L + (t - t0) / (t1 - t0) * (W - L - R), Y = v => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B);
+  const ticks = niceTicks(y0, y1, 5);
+  const days = [90, 60, 30, 0].map(d => now - d * 864e5).filter(t => t >= t0);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Price history: sold and asking prices over time">`;
+  s += ticks.map(v => `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--border)" stroke-width="1"/>
+        <text x="${L - 8}" y="${Y(v) + 4}" text-anchor="end" font-size="11" fill="var(--text-muted)">$${v}</text>`).join("");
+  s += days.map(t => `<text x="${X(t)}" y="${H - 8}" text-anchor="middle" font-size="11" fill="var(--text-muted)">${Math.round((now - t) / 864e5) ? Math.round((now - t) / 864e5) + "d ago" : "today"}</text>`).join("");
+  if (r) {
+    s += `<rect x="${L}" width="${W - L - R}" y="${Y(r.p75)}" height="${Math.max(1, Y(r.p25) - Y(r.p75))}" fill="var(--band)" rx="2"/>`;
+    s += `<line x1="${L}" x2="${W - R}" y1="${Y(r.median)}" y2="${Y(r.median)}" stroke="var(--text-secondary)" stroke-width="2"/>`;
+    s += `<text x="${W - R - 4}" y="${Y(r.median) - 6}" text-anchor="end" font-size="11" fill="var(--text-secondary)">median ${money(r.median)}</text>`;
+  }
+  if (store) {
+    s += `<line x1="${L}" x2="${W - R}" y1="${Y(store)}" y2="${Y(store)}" stroke="var(--text-secondary)" stroke-width="2" stroke-dasharray="5 4"/>`;
+    s += `<text x="${L + 6}" y="${Y(store) - 6}" font-size="11" fill="var(--text-secondary)">store ${money(store)}</text>`;
+  }
+  obs.forEach((o, i) => {
+    const cx = X(ts[i]), cy = Y(o.price + o.shipping);
+    const mark = o.kind === "sold"
+      ? `<circle cx="${cx}" cy="${cy}" r="4.5" fill="var(--series-sold)" stroke="var(--surface-1)" stroke-width="2"/>`
+      : `<circle cx="${cx}" cy="${cy}" r="4" fill="var(--surface-1)" stroke="var(--series-ask)" stroke-width="2"/>`;
+    s += `<g class="pt" data-i="${i}">${mark}<circle cx="${cx}" cy="${cy}" r="11" fill="transparent"/></g>`;
+  });
+  s += `</svg><div class="tip"></div>`;
+  host.innerHTML = s;
+  const tip = $(".tip", host), svg = $("svg", host);
+  host.querySelectorAll(".pt").forEach(g => {
+    g.addEventListener("mouseenter", () => {
+      const o = obs[g.dataset.i];
+      tip.innerHTML = `<b>${money(o.price + o.shipping)}</b> landed · ${esc(o.kind)}<br>
+        <span class="meta">${esc(o.last_seen.slice(0, 10))} · ${esc(o.source)}${o.shipping ? " · incl. " + money(o.shipping) + " ship" : ""}</span><br>${esc(o.title)}`;
+      const box = svg.getBoundingClientRect(), k = box.width / W, c = g.firstElementChild;
+      const px = c.cx.baseVal.value * k, py = c.cy.baseVal.value * k;
+      tip.style.display = "block";
+      tip.style.left = Math.min(px + 12, box.width - tip.offsetWidth - 4) + "px";
+      tip.style.top = Math.max(0, py - tip.offsetHeight - 10) + "px";
+    });
+    g.addEventListener("mouseleave", () => tip.style.display = "none");
+  });
+}
+
+function niceTicks(lo, hi, n) {
+  const step0 = (hi - lo) / n, mag = Math.pow(10, Math.floor(Math.log10(step0)));
+  const step = [1, 2, 2.5, 5, 10].map(f => f * mag).find(s => s >= step0);
+  const out = []; for (let v = Math.ceil(lo / step) * step; v <= hi; v += step) out.push(+v.toFixed(2));
+  return out;
+}
+
+function renderAlerts(al) {
+  const el = $("#alerts");
+  if (!al.length) { el.innerHTML = `<div class="empty">No open alerts.</div>`; return; }
+  const label = {below_median: "Under market", restock_margin: "Restock margin"};
+  el.innerHTML = al.map(a => `<div class="alert">
+    <div>
+      <span class="chip">${label[a.rule] || esc(a.rule)}</span>
+      <span class="name">${esc(a.name)}</span> <span class="meta">${esc(a.maker)} · ${esc(a.scale)} · ${esc(a.model_id)}</span>
+      <div><span class="big">${money(a.landed)}</span> landed
+        ${a.rule === "below_median" ? `vs ${a.reference_kind} median ${money(a.reference)} (n=${a.n_reference}) · <b>${Math.round(a.pct_below * 100)}% under</b>`
+          : `vs store ${money(a.reference)} · ${Math.round(a.pct_below * 100)}% margin`}</div>
+      <div class="meta">${a.url ? `<a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.title)}</a>` : esc(a.title)} · ${esc(a.source)} · ${esc(a.last_seen.slice(0, 16).replace("T", " "))} UTC</div>
+      ${a.note ? `<div class="note">${esc(a.note)}</div>` : ""}
+    </div>
+    <button data-dismiss="${a.id}">Dismiss</button></div>`).join("");
+}
+
+function renderReview(rv) {
+  const tb = $("#review");
+  if (!rv.length) { tb.innerHTML = `<tr><td colspan="5" class="empty">Nothing to review.</td></tr>`; return; }
+  tb.innerHTML = rv.map(r => `<tr>
+    <td class="status-${esc(r.match_status)}">${esc(r.match_status.replace("_", " "))}</td>
+    <td>${esc(r.title)} ${Object.keys(r.flags).map(f => `<span class="chip">${esc(f)}</span>`).join("")}</td>
+    <td class="num">${money(r.price + r.shipping)}</td>
+    <td class="hide-sm meta">${esc(r.reasons.join("; "))}</td>
+    <td class="hide-sm meta">${r.candidates.slice(0, 2).map(c => esc(c[0]) + " " + c[1]).join("<br>")}</td></tr>`).join("");
+}
+
+document.addEventListener("click", async e => {
+  const tab = e.target.closest("[data-tab]");
+  if (tab) {
+    document.querySelectorAll("[data-tab]").forEach(b => b.setAttribute("aria-selected", b === tab));
+    ["models", "alerts", "review"].forEach(t => $("#tab-" + t).hidden = t !== tab.dataset.tab);
+    return;
+  }
+  const th = e.target.closest("th[data-sort]");
+  if (th) { sortDir = sortKey === th.dataset.sort ? -sortDir : (th.dataset.sort === "name" ? 1 : -1); sortKey = th.dataset.sort; renderModels(); return; }
+  const dis = e.target.closest("[data-dismiss]");
+  if (dis) { await fetch(`/api/alerts/${dis.dataset.dismiss}/dismiss`, {method: "POST"}); load(); return; }
+  const row = e.target.closest("tr.row");
+  if (row && !e.target.closest("a")) { selected = selected === row.dataset.id ? null : row.dataset.id; renderModels(); }
+});
+["#q", "#f-maker", "#f-scale", "#f-window"].forEach(s => $(s).addEventListener("input", renderModels));
+load();
+</script>
+</body>
+</html>

@@ -33,6 +33,8 @@ CASES = [
     ("Kaido House KHMG217 BMW M3 Larry Chen 7-Eleven V1 Mini GT 1:64", "matched", "KHMG217"),
     ("Inno64 IN64-R34TS-WHI Nissan Skyline GT-R R34 Top Secret White", "matched", "IN64-R34TS-WHI"),
     ("Mini GT MGT00908 Jaguar XKR 007 Die Another Day Green", "matched", "MGT00908-007E"),
+    # item number wins even when a sibling's title is nearly identical
+    ("Mini GT MGT00901-007E 1-64 ASTON MARTIN DB5 RHD BIRCH SILVER METALLIC NEW", "matched", "MGT00901-007E"),
 
     # --- no item number: casting + colour has to carry it -------------------
     ("Mini GT 1/64 Lamborghini Revuelto Giallo Yellow NEW", "matched", "MGT00886"),
@@ -67,6 +69,8 @@ CASES = [
     ("LOOSE Mini GT Lamborghini Revuelto Yellow no box", "rejected", "MGT00886"),
     ("Mini GT 1964 Porsche 911 Slate Gray CHASE", "rejected", "MGT00717"),
     ("Mini GT MGT00745 Cadillac V-Series.R  - box damaged, car mint", "matched", "MGT00745"),
+    # "damaged" here is about the box; it is also a word in another model's name
+    ("Mini GT BMW M3 Kaido Works Larry Chen #29 7-Eleven box damaged car mint", "matched", "KHMG217"),
     ("CUSTOM Mini GT Lamborghini Revuelto yellow w/ rubber tires", "rejected", "MGT00886"),
     ("Empty box only Tarmac Works Pagani Zonda Cinque T64G-TL021-WH", "rejected", "T64G-TL021-WH"),
     ("3D printed Pandem Civic EG6 1/64 blue (Pop Race style)", "rejected", "PR640127"),
