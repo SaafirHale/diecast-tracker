@@ -34,6 +34,7 @@ class Listing:
     url: str = ""
     observed_at: str = ""    # ISO UTC; defaults to now
     sku: str = ""            # set when the source already knows the model (own costs)
+    shipping_known: bool = True
 
 
 @dataclass
@@ -88,6 +89,8 @@ class Tracker:
         flags = dict(r.flags)
         if cond and cond not in ("new", "new other", "brand new", "1000"):
             flags["used"] = cond                      # source says it is not new
+        if not li.shipping_known:
+            flags["shipping_unknown"] = "no shipping cost in source data"
         comparable = r.comparable and "used" not in flags
         row.update(model_id=r.model_id, match_status=r.status, confidence=r.confidence, how=r.how,
                    comparable=comparable, flags=flags, reasons=r.reasons, candidates=r.candidates)
@@ -115,10 +118,25 @@ class Tracker:
                 "sold": sold.as_dict() if sold else None,
                 "cost": cost.as_dict() if cost else None,
                 "store_vs_market": round(m.store_price / ref.median - 1, 3) if ref and m.store_price else None,
+                "live": self.live_asks(m.id),
                 "open_alerts": self.conn.execute(
                     "SELECT COUNT(*) FROM alerts WHERE model_id=? AND dismissed=0", (m.id,)).fetchone()[0],
             })
         return out
+
+    def live_asks(self, model_id: str) -> dict | None:
+        """Current asks from short-retention sources: shown as-is, not modelled."""
+        live = [k for k, v in db.SOURCES.items() if v.retention_hours]
+        rows = self.conn.execute(
+            f"""SELECT price + shipping AS landed, url, title, source FROM observations
+               WHERE model_id = ? AND kind = 'ask' AND comparable = 1 AND currency = 'USD'
+                 AND source IN ({",".join("?" * len(live))})
+                 AND (expires_at IS NULL OR expires_at > ?)
+               ORDER BY landed""", (model_id, *live, db.iso(db.now_utc()))).fetchall()
+        if not rows:
+            return None
+        return {"n": len(rows), "lowest": round(rows[0]["landed"], 2), "url": rows[0]["url"],
+                "title": rows[0]["title"], "source": rows[0]["source"]}
 
     def history(self, model_id: str, days: int = 90) -> list[dict]:
         rows = self.conn.execute(

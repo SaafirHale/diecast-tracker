@@ -59,6 +59,7 @@ def evaluate(conn, obs: dict, store_price: float | None, rules: AlertRules, at) 
     if (obs.get("confidence") or 0) < rules.min_confidence or obs.get("currency", "USD") != "USD":
         return []
     landed = obs["price"] + (obs.get("shipping") or 0.0)
+    caveat = "shipping not stated: landed may be higher" if "shipping_unknown" in (obs.get("flags") or {}) else ""
     out = []
 
     kind, ref = reference_for(conn, obs["model_id"], rules, at, exclude_id=obs.get("id"))
@@ -66,6 +67,7 @@ def evaluate(conn, obs: dict, store_price: float | None, rules: AlertRules, at) 
         below = 1 - landed / ref.median
         if below >= rules.pct_below:
             note = "far under median: check seller and photos" if landed < ref.median * rules.suspicious_below else ""
+            note = "; ".join(x for x in (note, caveat) if x)
             out.append(Alert("below_median", landed, ref.median, kind, ref.n, round(below, 3), note))
 
     if rules.margin is not None and store_price:
@@ -73,7 +75,8 @@ def evaluate(conn, obs: dict, store_price: float | None, rules: AlertRules, at) 
         if landed <= ceiling:
             out.append(Alert("restock_margin", landed, store_price, "store", 0,
                              round(1 - landed / store_price, 3),
-                             f"buy at or under ${ceiling:.2f} keeps {rules.margin:.0%} margin"))
+                             "; ".join(x for x in (f"buy at or under ${ceiling:.2f} keeps {rules.margin:.0%} margin",
+                                                   caveat) if x)))
     return out
 
 

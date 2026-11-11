@@ -10,7 +10,12 @@ Python 3.12 standard library only. No packages to install.
 
 ## Status
 
-The source-independent core is built and tested: catalogue import, title matching, price history, stats, alerts and the dashboard. **No live marketplace source is connected yet.** The choice of source is open, because eBay's terms affect what the tool may store (see [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md)). Until then, data comes in through CSV: your own sales, buy costs, and comps noted by hand.
+There are two ways to get data in.
+
+- **CSV:** your own sales, buy costs, and sold comps noted by hand from Seller Hub Product Research. This works now. Start from [data/comps-template.csv](data/comps-template.csv).
+- **eBay Browse API:** current asking prices, looked up live. The code is built to eBay's API terms and tested against a fake HTTP client. It has **not yet run against eBay**, because it needs the store owner's own Production keyset (see [eBay Browse](#ebay-browse)).
+
+Everything after the source is shared: catalogue import, title matching, price history, stats, alerts and the dashboard.
 
 ## Quick start
 
@@ -37,6 +42,7 @@ Other commands:
 | `stats [SKU] [--days 90]` | Median and p25 to p75 per model |
 | `alerts` | Open alerts |
 | `purge` | Delete rows past their source's retention window |
+| `ebay [SKU ...] [--in-stock]` | Look up current eBay asks for these models (default: the whole catalogue) |
 | `serve [--port 8064]` | Dashboard, bound to 127.0.0.1 only |
 
 `--db PATH` picks the database (default `data/tracker.db`).
@@ -56,6 +62,38 @@ Header row required. Only `title` and `price` are mandatory.
 | `observed_at` | `2026-10-01` or ISO UTC. Defaults to now |
 | `sku` | set this to skip matching, e.g. for your own invoice lines |
 | `url`, `ref` | link, and a stable id so re-importing updates rather than duplicates |
+
+## eBay Browse
+
+`python -m diecast_tracker ebay` runs two searches per model: one by item number, one by maker plus casting name. The searches use category 222 (Diecast & Toy Vehicles), new condition, fixed-price or Best Offer, USD, and delivery to the US. Results go through the same matcher as everything else.
+
+How it follows the terms in [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md):
+
+| eBay rule | What the tracker does |
+|---|---|
+| User Agreement: no scraping | Uses the Browse API only. Nothing fetches ebay.com pages. |
+| API License s8.1: listing data at most 6 hours old; delete listings no longer available | eBay rows expire after 6 hours and are purged on every refresh and dashboard start. Each refresh deletes the asks it did not see again. |
+| API License s9.5: no using eBay content to suggest or model prices | eBay asks never feed the reference median (`SourcePolicy.reference=False` in `db.py`). They show as **Live asks** and are checked against your own reference: your sales and comps, and your store price for the margin rule. |
+| Default limit 5,000 calls per day | Capped at 1,000 calls per day, counted in the database. 60 models is 120 calls a refresh. |
+
+Setup, all done by the store owner:
+
+1. Create an eBay Developers Program account at developer.ebay.com and accept the API License Agreement.
+2. Create a **Production** keyset.
+3. On the Alerts & Notifications page, either opt out of Marketplace Account Deletion notifications ("Not persisting eBay data"), or subscribe an HTTPS endpoint. The Production keyset stays disabled until one is done. The tracker stores no eBay user data.
+4. Put the keys in `.env` at the repo root. It is gitignored:
+
+   ```
+   EBAY_CLIENT_ID=...
+   EBAY_CLIENT_SECRET=...
+   # EBAY_ENV=sandbox   to try the sandbox first
+   ```
+
+Not yet checked against live responses:
+- how well the generated search queries find each model;
+- whether `shippingOptions` is always present in search results. When it is missing, the row is flagged `shipping_unknown` and alerts say so.
+
+Whether using eBay asks for internal restock decisions sits within s9.5 is a judgement call. The tracker takes the conservative reading above. eBay Developer Support can confirm.
 
 ## How it works
 
@@ -108,7 +146,11 @@ Alerts fire only on comparable, confidently matched (≥ 0.75) USD asks. Each fi
 
 ### Retention
 
-Each source has a retention policy in `db.SOURCES`. `manual` rows are kept. `ebay_browse` rows expire after 6 hours and are deleted by `purge` (and on dashboard start). That follows the eBay API License Agreement's freshness and deletion rules as summarised in [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md).
+Each source has a policy in `db.SOURCES`: how long its rows are kept, and whether its prices may build the reference median.
+
+- `manual` rows are kept and count toward the reference.
+- `ebay_browse` rows expire after 6 hours and never count.
+- `demo_live` is the demo's synthetic stand-in for live asks. It is handled the same way and is not eBay data.
 
 ## Data sources
 
@@ -127,11 +169,12 @@ Any developer account is the store owner's to create.
 python -m unittest
 ```
 
-There are 31 tests:
+There are 40 tests:
 
 - **Matcher:** 55 hand-written listing titles in sellers' styles (37 matched, 6 rejected, 3 ambiguous, 9 no-match), plus normalisation and flag unit tests.
 - **Stats:** checked against numpy's percentile definition, plus outlier cases (fishing listings, starting bids, MSRP clusters, genuine wide spreads).
 - **End to end:** de-duplication, shipping in the landed price, minimum samples, loose and lot exclusion, used condition, the suspicious tag, window cut-off, the restock rule, 6-hour retention, given SKUs and CSV import.
+- **eBay source:** run against a fake HTTP client with hand-written responses. Covers the token flow and caching, request shape, the sandbox host, response parsing, credentials from `.env`, eBay asks kept out of the reference, alerts against your own sales, the unknown-shipping note, deleting ended listings, and the daily call cap.
 
 ## Layout
 
@@ -147,7 +190,10 @@ diecast_tracker/
   server.py      localhost dashboard server
   static/        dashboard page (vanilla JS, inline SVG chart, light and dark)
   demo.py        synthetic demo data
+  sources/
+    ebay_browse.py eBay Browse API client and refresh
 data/catalogue.json
+data/comps-template.csv
 docs/DATA_SOURCES.md
 tests/
 ```

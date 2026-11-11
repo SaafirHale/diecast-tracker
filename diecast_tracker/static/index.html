@@ -169,6 +169,7 @@ tbody tr.row:hover, tbody tr.row.sel { background: var(--surface-2); }
           <th class="num" data-sort="median">Market median</th>
           <th class="hide-sm">Typical range (p25–p75)</th>
           <th class="num" data-sort="store_vs_market">Store vs market</th>
+          <th class="num hide-sm" data-sort="live">Live asks</th>
           <th class="num hide-sm" data-sort="open_alerts">Alerts</th>
         </tr></thead>
         <tbody id="rows"></tbody>
@@ -221,13 +222,13 @@ function renderModels() {
     (!q || [m.name, m.sku, m.marque, m.maker].join(" ").toLowerCase().includes(q)) &&
     (!mk || m.maker === mk) && (!sc || m.scale === sc) &&
     (!w || (w === "data" && ref(m)) || (w === "over" && m.store_vs_market > 0) || (w === "under" && m.store_vs_market < 0)));
-  const val = m => sortKey === "median" ? (ref(m)?.median ?? -1) : (m[sortKey] ?? -Infinity);
+  const val = m => sortKey === "median" ? (ref(m)?.median ?? -1) : sortKey === "live" ? (m.live?.lowest ?? -1) : (m[sortKey] ?? -Infinity);
   rows.sort((a, b) => {
     const x = val(a), y = val(b);
     return (typeof x === "string" ? x.localeCompare(y) : x - y) * sortDir || (!!ref(b) - !!ref(a)) || a.name.localeCompare(b.name);
   });
   const tb = $("#rows");
-  if (!rows.length) { tb.innerHTML = `<tr><td colspan="6" class="empty">No models match these filters.</td></tr>`; return; }
+  if (!rows.length) { tb.innerHTML = `<tr><td colspan="7" class="empty">No models match these filters.</td></tr>`; return; }
   tb.innerHTML = rows.map(m => {
     const r = ref(m);
     const diff = m.store_vs_market;
@@ -237,8 +238,9 @@ function renderModels() {
       <td class="num">${r ? money(r.median) + `<div class="meta">${r.kind} · n=${r.n}${r.n < 5 ? " · thin" : ""}</div>` : '<span class="muted">no data</span>'}</td>
       <td class="hide-sm">${r ? rangeStrip(r, m.store_price) + `<div class="meta">${money(r.p25)} – ${money(r.p75)}</div>` : ""}</td>
       <td class="num">${pct(diff)}${diff != null ? `<div class="meta">${diff > 0 ? "above" : diff < 0 ? "below" : "at"} market</div>` : ""}</td>
+      <td class="num hide-sm">${m.live ? (m.live.url ? `<a href="${esc(m.live.url)}" target="_blank" rel="noopener" title="${esc(m.live.title)}">${money(m.live.lowest)}</a>` : `<span title="${esc(m.live.title)}">${money(m.live.lowest)}</span>`) + `<div class="meta">lowest of ${m.live.n}</div>` : '<span class="muted">–</span>'}</td>
       <td class="num hide-sm">${m.open_alerts || '<span class="muted">0</span>'}</td>
-    </tr>${selected === m.id ? `<tr><td colspan="6" style="padding:0"><div class="detail" id="detail">Loading…</div></td></tr>` : ""}`;
+    </tr>${selected === m.id ? `<tr><td colspan="7" style="padding:0"><div class="detail" id="detail">Loading…</div></td></tr>` : ""}`;
   }).join("");
   if (selected) loadDetail(selected);
 }

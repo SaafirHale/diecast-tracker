@@ -88,6 +88,12 @@ def seed(db_path: str | Path, n_models: int = 32, seed_value: int = 64) -> dict:
             p = max(4.0, rng.gauss(centre * 1.08, centre * 0.08))
             add(title=_title(m, rng), price=round(p - ship, 2), shipping=ship, kind="ask",
                 observed_at=db.iso(now - timedelta(hours=rng.uniform(0, 20))))
+        if rng.random() < 0.7:                                      # live asks, kept 6h like eBay rows
+            for _ in range(rng.randint(1, 4)):
+                p = max(4.0, rng.gauss(centre * 1.05, centre * 0.09))
+                ref += 1
+                listings.append(Listing("demo_live", f"live-{ref}", _title(m, rng), round(p - ship, 2), ship,
+                                        kind="ask", observed_at=db.iso(now - timedelta(minutes=rng.randint(1, 90)))))
         if rng.random() < 0.6:                                      # junk the matcher must refuse
             pattern, factor = rng.choice(JUNK)
             maker = rng.choice(MAKER_SPELLINGS.get(m.maker, [m.maker]))

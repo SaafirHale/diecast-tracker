@@ -27,8 +27,12 @@ Before writing any fetcher, I checked what the data sources allow:
 - Its Browse API returns active listings only.
 - Its API License Agreement restricts using API data to model prices and caps how long listing data can be stored.
 
-So every source carries a retention policy, and eBay data is set to expire after six hours.
+So every source carries a policy: how long its rows live, and whether its prices may build the reference median. The eBay Browse client is built to those rules:
+
+- eBay asks expire after six hours.
+- Each refresh deletes the listings it no longer sees.
+- eBay asks never feed the median. They show as live asks and are checked against my own sales and shelf prices.
 
 ## Stack
 
-Python 3.12 (standard library only), SQLite, schema.org JSON-LD, vanilla JavaScript with inline SVG charts, unittest
+Python 3.12 (standard library only), SQLite, eBay Browse API (OAuth client credentials), schema.org JSON-LD, vanilla JavaScript with inline SVG charts, unittest

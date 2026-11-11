@@ -31,6 +31,9 @@ def main(argv=None):
     s.add_argument("--days", type=int, default=90)
     sub.add_parser("alerts", help="open alerts")
     sub.add_parser("purge", help="delete rows past their source's retention")
+    e = sub.add_parser("ebay", help="look up current eBay asks (your own Browse API keys in .env)")
+    e.add_argument("skus", nargs="*", help="models to check (default: the whole catalogue)")
+    e.add_argument("--in-stock", action="store_true", help="only models the store has in stock")
     v = sub.add_parser("serve", help="run the dashboard on localhost")
     v.add_argument("--port", type=int, default=8064)
     d = sub.add_parser("demo", help="build data/demo.db with SYNTHETIC prices and serve it")
@@ -67,6 +70,27 @@ def main(argv=None):
         for x in Tracker(a.db).alerts():
             print(f"[{x['rule']}] {x['model_id']} ${x['landed']:.2f} vs ${x['reference'] or 0:.2f} "
                   f"({x['pct_below']:.0%} under) {x['title'][:60]} {x['note']}")
+    elif a.cmd == "ebay":
+        from .sources import ebay_browse as E
+        creds = E.load_credentials(ROOT / ".env")
+        if not creds:
+            print("No eBay keys found. Put EBAY_CLIENT_ID and EBAY_CLIENT_SECRET (Production keyset) "
+                  "in .env at the repo root, or in the environment. See README > eBay Browse.")
+            return 2
+        t = Tracker(a.db)
+        wanted = {s.upper() for s in a.skus}
+        models = [m for m in t.models if (not wanted or m.id in wanted) and (not a.in_stock or m.in_stock)]
+        unknown = wanted - {m.id for m in models}
+        if unknown:
+            print("not in catalogue:", ", ".join(sorted(unknown)))
+        client = E.BrowseClient(creds, call_budget=E.daily_budget(t.conn))
+        try:
+            rep = E.refresh(t, client, models)
+        except E.EbayError as err:
+            print("eBay error:", err)
+            return 1
+        print(f"{rep.models} models, {rep.calls} calls, {rep.seen} listings {rep.by_status}; "
+              f"{rep.alerts} new alerts; {rep.retired} ended listings removed; {rep.purged} expired rows purged")
     elif a.cmd == "purge":
         print(f"purged {Tracker(a.db).purge()} rows")
     elif a.cmd == "serve":
@@ -81,4 +105,4 @@ def main(argv=None):
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

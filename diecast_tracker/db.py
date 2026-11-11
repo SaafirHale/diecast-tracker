@@ -26,14 +26,25 @@ from .catalogue import Model
 class SourcePolicy:
     retention_hours: float | None   # None = keep
     note: str
+    reference: bool = True          # may its prices build the reference median?
 
 
 SOURCES: dict[str, SourcePolicy] = {
     "manual": SourcePolicy(None, "Entered by hand: own sales, buy costs, comps noted from research."),
     "demo": SourcePolicy(None, "Synthetic demo data. Not market prices."),
-    "ebay_browse": SourcePolicy(6, "eBay Browse API. API License Agreement: listing data <= 6h old, delete ended listings."),
+    "demo_live": SourcePolicy(6, "Synthetic live asks for the demo, handled like eBay rows. Not eBay data.",
+                              reference=False),
+    # API License Agreement: listing data no more than 6h old, ended listings
+    # deleted (s8.1), and no using eBay content to model prices (s9.5). So eBay
+    # asks are shown and alerted on, but never feed the reference median.
+    "ebay_browse": SourcePolicy(6, "eBay Browse API: live asks, kept 6h, not used for the reference median.",
+                                reference=False),
 }
 DEFAULT_POLICY = SourcePolicy(None, "Unregistered source.")
+
+
+def non_reference_sources() -> list[str]:
+    return sorted(k for k, v in SOURCES.items() if not v.reference)
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS models (
@@ -137,13 +148,30 @@ def purge_expired(conn: sqlite3.Connection, at: datetime | None = None) -> int:
 
 def landed_prices(conn: sqlite3.Connection, model_id: str, kind: str, since: datetime,
                   exclude_id: int | None = None, currency: str = "USD") -> list[float]:
+    """Prices that may form the reference: comparable, in window, from reference sources."""
+    skip = non_reference_sources()
     rows = conn.execute(
-        """SELECT price + shipping AS landed FROM observations
+        f"""SELECT price + shipping AS landed FROM observations
            WHERE model_id = ? AND kind = ? AND comparable = 1 AND currency = ?
-             AND last_seen >= ? AND id IS NOT ?""",
-        (model_id, kind, currency, iso(since), exclude_id),
+             AND last_seen >= ? AND id IS NOT ?
+             AND source NOT IN ({",".join("?" * len(skip))})""",
+        (model_id, kind, currency, iso(since), exclude_id, *skip),
     ).fetchall()
     return [r["landed"] for r in rows]
+
+
+def retire_unseen(conn: sqlite3.Connection, source: str, model_ids: list[str], seen_refs: set[str]) -> int:
+    """Delete a source's asks for these models that the latest refresh did not return:
+    the listing ended, sold, or stopped matching."""
+    if not model_ids:
+        return 0
+    rows = conn.execute(
+        f"""SELECT id, source_ref FROM observations WHERE source = ? AND kind = 'ask'
+              AND model_id IN ({",".join("?" * len(model_ids))})""", (source, *model_ids)).fetchall()
+    gone = [r["id"] for r in rows if r["source_ref"] not in seen_refs]
+    cur = conn.executemany("DELETE FROM observations WHERE id = ?", [(i,) for i in gone])
+    conn.commit()
+    return cur.rowcount
 
 
 def set_meta(conn: sqlite3.Connection, key: str, value: str) -> None:
